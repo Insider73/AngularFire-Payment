@@ -1,0 +1,70 @@
+<mz-navbar>
+  <div class="container">
+    NordClan
+    <mz-navbar-item-container [align]="'right'">
+      <mz-navbar-item><a href="/login">Вход</a></mz-navbar-item>
+    </mz-navbar-item-container>
+  </div>
+</mz-navbar>
+
+<div class="row registration-block">
+  <div class="col-12">
+    <div class="row" *ngIf="authError">
+      <div class="col-12 alert alert-danger">
+        {{ authError?.message }}
+      </div>
+    </div>
+    <form [formGroup]="registerForm" (ngSubmit)="createUser(registerForm)">
+      
+      <div class="row">
+        <div class="input-field s12">
+          <label for="firstName">First name</label>
+          <input formControlName="firstName" id="firstName" type="text" class="validate" id="firstName" [ngClass]="{ 'invalid': submitted && f.firstName.errors }">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field s12">
+          <label for="lastName">Last name</label>
+          <input formControlName="lastName" id="lastName" type="text" class="validate" id="lastName" value="" [ngClass]="{ 'invalid': submitted && f.lastName.errors }">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field s12">
+          <label for="email">Email</label>
+          <input formControlName="email" id="email" type="email" class="validate" [ngClass]="{ 'invalid': submitted && f.email.errors }">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field s12">
+          <label for="password">Password</label>
+          <input formControlName="password" id="password" type="password" class="validate" [ngClass]="{ 'invalid': submitted && f.password.errors }">
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <!-- <div *ngIf="f.password.errors.required">Password is required</div> -->
+            <div *ngIf="f.password.errors.minlength">Пароль должен содержать минимум 6 символов</div>
+        </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field s12">
+          <label>Password</label>
+          <input formControlName="confirmPassword" id="confirmPassword" type="password" class="validate" [ngClass]="{ 'invalid': submitted && f.confirmPassword.errors }">
+          <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+            <!-- <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div> -->
+            <div *ngIf="f.confirmPassword.errors.mustMatch">Пароли должны совпадать</div>
+        </div>
+        </div>
+      </div>
+
+      <div class="row registration_footer">
+        <div class="col-md-12">
+          <button class="btn btn-primary">Зарегистрироваться</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>

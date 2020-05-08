@@ -1,0 +1,40 @@
+<mz-navbar>
+  <div class="container">
+    NordClan
+    <mz-navbar-item-container [align]="'right'">
+      <mz-navbar-item><a href="/registration">Регистрация</a></mz-navbar-item>
+    </mz-navbar-item-container>
+  </div>
+</mz-navbar>
+
+<div class="row login-block">
+  <div class="col-12">
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+
+      <div class="row" *ngIf="authError">
+        <div class="col-12 alert alert-danger">{{ authError?.message }}</div>
+      </div>
+
+      <div class="row">
+        <div class="input-field s12">
+          <label for="email">Email</label>
+          <input ngModel #email="ngModel" name="email" type="email" class="validate">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field s12">
+          <label for="password">Password</label>
+          <input ngModel #password="ngModel" name="password" type="password" class="validate">
+        </div>
+      </div>
+
+      <div class="row mt-2">
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Вход</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>

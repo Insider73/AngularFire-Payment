@@ -1,0 +1,49 @@
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.modal_addPayment {
+    .modal_addPayment-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+        
+        .modal_addPayment-title {
+            font-weight: 600;
+            font-size: 22px;
+        }
+        .modal_addPayment-close {
+            background-image: url(./assets/signs.svg);
+            background-size: 21px;
+            background-repeat: no-repeat;
+            width: 22px;
+            height: 22px;       
+            padding: 0;
+        }
+    }
+    .modal_addPayment-content {
+        margin-bottom: 0;
+        .formMessage {
+            display: none;
+        }
+        .formMessage.visible {
+            display: block;
+            margin-bottom: 25px;
+        }
+    }
+    .modal {
+        height: auto;
+        max-height: initial;
+        width: 600px;
+    }
+    .modal-footer {
+        display: none;
+    }
+    .registration_footer {
+        padding: 0 10px;
+        margin-bottom: 0;
+    }
+}
+

@@ -1,0 +1,13 @@
+.registration-block {
+    border-radius: 10px;
+    height: calc(100vh - 128px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 0;
+
+    &>.col-12 {
+        width: 500px;
+    }
+}

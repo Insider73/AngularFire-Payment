@@ -1,0 +1,14 @@
+.paymentDetails {
+    height: calc(100vh - 128px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.paymentDetails-href {
+    a {
+        display: flex;
+        align-items: center;
+        color: black;
+    }
+}

@@ -1,0 +1,40 @@
+<mz-navbar>
+  <div class="container">
+    <span>NordClan</span>
+    <mz-navbar-item-container [align]="'right'">
+      <mz-navbar-item><a (click)="logout()">Выйти</a></mz-navbar-item>
+    </mz-navbar-item-container>
+  </div>
+</mz-navbar>
+
+<div class="container">
+    <p class="paymentDetails-href">
+        <a href="/payments">
+          <span class="material-icons">keyboard_backspace</span>Назад
+        </a>
+    </p>
+  <div class="paymentDetails">
+    <table>
+      <thead>
+        <tr>
+          <th>Имя</th>
+          <th>Комментарий</th>
+          <th>Дата</th>
+          <th>Статус</th>
+          <th>Цена</th>
+          <th>Реквизиты</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{payment.name}}</td>
+          <td>{{payment.comment}}</td>
+          <td>{{payment.date}}</td>
+          <td>{{payment.status}}</td>
+          <td>{{payment.price}}</td>
+          <td>{{payment.requisites}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

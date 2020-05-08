@@ -1,0 +1,116 @@
+<mz-navbar>
+  <div class="container">
+    <span>NordClan</span>
+    <mz-navbar-item-container [align]="'right'">
+      <mz-navbar-item><span class="header-price">{{ currentUser?.score }} ₽ </span></mz-navbar-item>
+      <mz-navbar-item><a (click)="logout()">Выйти</a></mz-navbar-item>
+    </mz-navbar-item-container>
+  </div>
+</mz-navbar>
+
+<div class="container home">
+  <p class="flow-text home-title">{{ authUserInfo?.displayName }}, Добро пожаловать!</p>
+  <div class="home-subtitle">Ваш email: {{ authUserInfo?.email }}</div>
+
+  <div class="home-header">
+    <div class="home-header-title">Ваши платежи</div>
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Поиск" [(ngModel)]="term">
+    </div>
+  </div>
+
+  <table class="table" id="table-id">
+    <thead>
+      <tr>
+        <th scope="col">N</th>
+        <th scope="col">Имя</th>
+        <th scope="col">Дата</th>
+        <th scope="col" aria-sort="descending">Цена</th>
+        <th scope="col">Статус</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of paymentItems | filter: term; let i = index" [routerLink]="['payment', item.id]"
+        [attr.data-index]="i">
+        <td>{{i + 1}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.date}}</td>
+        <td>{{item.price}} ₽</td>
+        <td>{{item.status}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="btn home-addPayment" (click)="addPaymentModal.openModal()">Создать платеж</button>
+</div>
+
+<mz-modal #addPaymentModal [options]="modalOptions" class="modal_addPayment">
+
+  <mz-modal-header>
+    <div class="modal_addPayment-header">
+      <div class="modal_addPayment-title">Создание платежа</div>
+      <button class="modal_addPayment-close" mz-button [flat]="true" mz-modal-close></button>
+    </div>
+  </mz-modal-header>
+
+  <mz-modal-content>
+    <div class="row modal_addPayment-content">
+      <div class="col-12">
+        <form [formGroup]="paymentForm" (ngSubmit)="addPayment(paymentForm)">
+          <div class="formMessage" [ngClass]="{ 'visible': visibleScore}">На вашем счете недостаточно средств</div>
+          <div class="row">
+            <div class="input-field s12">
+              <label for="name">Наименование</label>
+              <input formControlName="name" id="name" type="text" class="validate"
+                [ngClass]="{ 'invalid': submitted && f.name.errors}">
+              <!-- <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                <div *ngIf="f.name.errors.required">Это поле обязательно</div>
+              </div> -->
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field s12">
+              <label for="comment">Комментарий</label>
+              <input formControlName="comment" id="comment" type="text" class="validate"
+                [ngClass]="{ 'invalid': submitted && f.comment.errors}">
+              <!-- <div *ngIf="submitted && f.comment.errors" class="invalid-feedback">
+                <div *ngIf="f.comment.errors.required">Это поле обязательно</div>
+              </div> -->
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field s12">
+              <label for="price">Сумма</label>
+              <input formControlName="price" id="price" type="number" class="validate"
+                [ngClass]="{ 'invalid': submitted && f.price.errors}">
+              <!-- <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                <div *ngIf="f.price.errors.required">Это поле обязательно</div>
+              </div> -->
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field s12">
+              <label for="requisites">Реквизиты</label>
+              <input formControlName="requisites" id="requisites" type="text" class="validate"
+                [ngClass]="{ 'invalid': submitted && f.requisites.errors}">
+              <!-- <div *ngIf="submitted && f.requisites.errors" class="invalid-feedback">
+                <div *ngIf="f.requisites.errors.required">Это поле обязательно</div>
+              </div> -->
+            </div>
+          </div>
+
+          <div class="input-field s12">
+            <div class="col-12">
+              <button class="btn btn-primary">Создать</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </mz-modal-content>
+
+</mz-modal>
